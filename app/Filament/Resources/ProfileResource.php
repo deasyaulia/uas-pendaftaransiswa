@@ -28,21 +28,20 @@ class ProfileResource extends Resource
     {
         return $form
         ->schema([
-            Forms\Components\TextInput::make('name')
+            TextInput::make('name')
                 ->label('Name')
                 ->required()
                 ->maxLength(255),
 
-            Forms\Components\FileUpload::make('photo')
+            FileUpload::make('photo')
                 ->label('Profile Photo')
                 ->image()
-                ->directory('uploads/profiles')
-                ->required() 
+                ->directory('uploads/profiles') 
                 ->visibility('public'),
 
-            Forms\Components\TextInput::make('bio')
+            Textarea::make('bio')
                 ->label('Bio')
-                ->maxLength(255),
+                ->maxLength(500),
         ]);
     }
 
@@ -50,20 +49,24 @@ class ProfileResource extends Resource
     {
         return $table
         ->columns([
-            Tables\Columns\TextColumn::make('name')
+            TextColumn::make('name')
                 ->label('Name')
                 ->sortable()
                 ->searchable(),
 
-            Tables\Columns\ImageColumn::make('photo')
+                ImageColumn::make('photo')
                 ->label('Profile Photo')
+                ->getStateUsing(fn ($record) => $record->photo ? asset('storage/uploads/profiles/' . $record->photo) : null)
                 ->width(50)
                 ->height(50),
+            
 
-            Tables\Columns\TextColumn::make('bio')
+            TextColumn::make('bio')
                 ->label('Bio')
-                ->limit(50), // Membatasi teks yang ditampilkan
+                ->limit(50), 
         ]);
+        
+        
     }
 
     public static function getRelations(): array

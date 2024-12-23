@@ -17,7 +17,7 @@ class Pendaftaran extends Model
     protected $fillable = [
         'nama_pendaftar',
         'email',
-        'jurusan_id',
+        'jurusan',
         'tanggal_pendaftaran', // Tambahkan field lainnya sesuai tabel
     ];
 }

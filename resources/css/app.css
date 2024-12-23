@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.feature-icons {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .feature-icons li {
+    display: inline-block;
+  }
+  
+  .feature-icons a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+  }
+  
+  .feature-icons a:hover {
+    color: #1d72b8; /* Warna hover */
+  }
+  
